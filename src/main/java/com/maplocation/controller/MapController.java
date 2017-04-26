@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.maplocation.dao.GeoDao;
+import com.maplocation.entity.Geo;
 import com.maplocation.location.ServerLocation;
 import com.maplocation.location.ServerLocationDetails;
 import com.maplocation.location.ServerLocationName;
@@ -25,7 +26,6 @@ public class MapController {
 	ServerLocationDetails serverLocationDetails;
 	@Autowired
 	GeoDao geoDao;
-	
 	
 	@RequestMapping(value="/")
 	public ModelAndView getMapPage(){
@@ -59,11 +59,7 @@ public class MapController {
 	public @ResponseBody
 	String getDomainInJsonFormatName(@RequestParam String geoName){
 		
-		System.out.println(geoName);
-		String txtName = WordUtils.capitalizeFully(geoName);
-		
-		System.out.println(txtName);
-		
+			   String txtName = WordUtils.capitalizeFully(geoName);
 		       List<ServerLocationName> geoLatLon = geoDao.getLatLngByName(txtName);
 		       String result="";
 		       ObjectMapper mapper = new ObjectMapper();
@@ -81,16 +77,21 @@ public class MapController {
 	//**********************************selected by Id**************************
 	@RequestMapping(value="getLocationSelectedById",method=RequestMethod.GET)
 	public @ResponseBody
-	String getDomainInJsonFormatSelectedName(@RequestParam String selectName){
+	String getDomainInJsonFormatSelectedName(@RequestParam long selectName){
 		
-		System.out.println(selectName);
-		String txtName = WordUtils.capitalizeFully(selectName);
 		
-		      ServerLocationName geoLatLon = geoDao.getLatLngBySelectedName(txtName);
+		      Geo geoLatLon = geoDao.getLaLngById(selectName);
+		      
+		      ServerLocationName locationDetails=new ServerLocationName();
+		      locationDetails.setId(geoLatLon.getGeoId());
+		      locationDetails.setLocationName(geoLatLon.getCity());
+		      locationDetails.setLat(geoLatLon.getLat());
+		      locationDetails.setLon(geoLatLon.getLng());
+		    
 		      String str="";
 		       ObjectMapper mapper=new ObjectMapper();
 		       try {
-				str=mapper.writeValueAsString(geoLatLon);
+				str=mapper.writeValueAsString(locationDetails);
 		       } catch (Exception e) {
 				e.printStackTrace();
 			}

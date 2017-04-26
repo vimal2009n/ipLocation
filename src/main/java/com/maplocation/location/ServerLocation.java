@@ -1,5 +1,8 @@
 package com.maplocation.location;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ServerLocation {
 	
 	String countryCode;

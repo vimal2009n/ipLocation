@@ -1,5 +1,6 @@
 package com.maplocation.util;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -12,16 +13,14 @@ public class HibernateUtil {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	/*@SuppressWarnings("unchecked")
-		public <T> T fetchByName(Serializable name, Class<T> entityClass) {
-		   return (T) sessionFactory.getCurrentSession().get(entityClass, name);
-	    }*/
-
 	 @SuppressWarnings("rawtypes")
 		public <T> List fetchAll(String query) {  
 		 
 	        return sessionFactory.getCurrentSession().createSQLQuery(query).list();        
 	    }
 	 
-
+	 @SuppressWarnings("unchecked")
+		public <T> T fetchById(Serializable id, Class<T> entityClass) {
+	        return (T)sessionFactory.getCurrentSession().get(entityClass, id);
+	    }
 }

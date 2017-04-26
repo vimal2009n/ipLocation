@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.maplocation.dao.GeoDao;
 import com.maplocation.location.ServerLocationName;
+import com.maplocation.entity.Geo;
 import com.maplocation.service.GeoService;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +26,8 @@ public class GeoServiceImpl implements GeoService{
 	}
 
 	@Override
-	public ServerLocationName getLatLngBySelectedName(String selection) {
-		
-		return geoDao.getLatLngBySelectedName(selection);
+	public Geo getLaLngById(long selected) {
+		return geoDao.getLaLngById(selected);
 	}
+
 }
