@@ -20,7 +20,7 @@
 	</head>
 	<body>
 		
-	<div class="panel panel-success">	
+<!--  	<div class="panel panel-success">	
 	 <div class="panel-heading">Geo Location</div>
   		<div class="panel-body">
 		 <div class="row">
@@ -31,7 +31,7 @@
 			</span>
 		 </div>
 		 <div class="col-xs-6">
-		 	Enter Name:
+		 	Enter City:
 		
 			<input type="text"  id="input-search-byname"  placeholder="City Name">
 	    	<input type="button" id="input-button-search-name" value="Search">
@@ -40,7 +40,31 @@
 		 
 		</div> 
 		</div>
-	</div>	
+	</div>	-->
+  <div class="panel panel-success">	
+	 <div class="panel-heading">Geo Location</div>
+  	  <div class="panel-body">	
+	   <div class="form-inline">
+	    <div class="row">
+		  <div class="col-xs-6">
+ 		 <div class="form-group">
+   			 <label for="ipAddress">Enter IP:</label>
+   			 <input type="text" class="form-control" id="input-search" placeholder="Ip address">
+		  </div>
+		  <input type="button" id="input-button-search"  class = "btn btn-primary" value="Search">
+		 </div>
+		 
+		  <div class="col-xs-6"> 
+ 	     <div class="form-group">
+   			 <label for="cityName">Enter City:</label>
+  			  <input type="text" class="form-control" id="input-search-byname" placeholder="City Name">
+ 		 </div>
+ 		 	<input type="button" id="input-button-search-name"  class = "btn btn-primary" value="Search">
+		</div>
+		</div>
+		</div>
+   	</div>
+   </div>
 		
 		<div id="table">
 			<table>
