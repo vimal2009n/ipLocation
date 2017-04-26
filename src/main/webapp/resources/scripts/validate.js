@@ -179,7 +179,7 @@ $(document).ready(function () {
 	//***********************************************
 	
 	function showMap(lat,lon){
-		alert(lat+"  "+lon);
+	
 		var googleLatLon=new google.maps.LatLng(lat,lon);
 		
 		var latlng = new google.maps.LatLng(lat, lon);
@@ -206,8 +206,6 @@ $(document).ready(function () {
 		};
 		var marker=new google.maps.Marker(markerOptions );
 	}
-	
-	
-  });
+ });
 
 
