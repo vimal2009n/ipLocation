@@ -22,9 +22,7 @@ public class ServerLocationDetailsImpl implements ServerLocationDetails {
 		ServerLocation serverLocation = null;
 
 		InputStream stream = getClass().getResourceAsStream(locationDataFile);
-        System.out.println(stream);
-        
-		if (stream == null) {
+      	if (stream == null) {
 			System.out.println("location database is not found "
 					+ locationDataFile);
 		} else {

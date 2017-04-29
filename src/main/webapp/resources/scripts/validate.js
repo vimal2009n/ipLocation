@@ -8,7 +8,7 @@ var selectedItemId=0;
 var links=0;
 function showStreetView() {
 
-	alert(lat+"  "+lon);
+	alert("lat:  "+lat+"   long:"+lon)
 	/*centre=new google.maps.LatLng(lat, lon);
 	panorama = new GStreetviewPanorama(document.getElementById("map"));
 	panorama.setLocationAndPOV(centre, {yaw: 180, b: 0});*/
@@ -18,7 +18,8 @@ function showStreetView() {
 	panorama.setPosition(centre);
 	panorama.setPov({heading: 180, pitch: 0});
 
-	
+	 alert(panorama.getLinks);
+	alert(this.Geolocation);
 	moveStart();
 }
 
@@ -95,7 +96,7 @@ $(document).ready(function () {
 	$("#table").hide();
 	
 	
-	//*********************auto complete***********************************
+	//*********************auto complete***************************
 	
 	 $( "#input-search-byname" ).autocomplete({
 	      source: function( request, response ) {
@@ -125,18 +126,32 @@ $(document).ready(function () {
 	      };
 	
 	
-	//*******************************Selected By Ip**********************************
+	//*******************************Selected By Ip*****************
 	$("#input-button-search").click(function () {
 		
+		var txt=$('#input-search').val();
+		var regExPat=/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+		
+		if(txt==null||txt==''){
+			alert("Ip required");
+			return false;
+			}
+		 if(!regExPat.test(txt)){
+			
+			alert("Not an IP");
+			return false;
+			
+		}
 		 $.getJSON("getLocationByIpAddress",
 		 {
-		 ipAddress: $('#input-search').val()
+		 ipAddress: txt
 		 },
 		 function (data) {
 		json = data;
+		
 		if (json["countryCode"] != null) {
 			$("#table").show();
-			
+			 $('#map').height($(window).height() - 50)
 			$("#country").text(json["countryName"]);
 			$("#state").text(json["regionName"]);
 			$("#city").text(json["city"]);
@@ -144,7 +159,6 @@ $(document).ready(function () {
 			 lat = parseFloat(json["latitude"]);
 			 lon = parseFloat(json["longitude"]);
 		     showMap(lat,lon);
-		
 		}
 		}).done(function () {
 		 })
@@ -154,7 +168,7 @@ $(document).ready(function () {
 		 });
 	});
 	
-	//*************************Selected By Id**************************
+	//*************************Selected By Id*********************
 
 	$("#input-button-search-name").click(function () {
 		 $.getJSON("getLocationSelectedById",
@@ -162,11 +176,16 @@ $(document).ready(function () {
 			 selectName: selectedItemId
 		 },
 		 function (data) {
-			 
+			//alert(data);
+			
+			 $('#input-search').val("")
+			// $("#table").show();
+			 $("#table").hide();
+			 $('#map').height($(window).height() - 50)
 			 lat=parseFloat(data["lat"]);
 			 lon=parseFloat(data["lon"]);
 			 showMap(lat,lon);
-			
+		
 		}).done(function () {
 		 })
 		 .fail(function () {
@@ -174,9 +193,7 @@ $(document).ready(function () {
 		 .complete(function () {
 		 });
 	});
-	
-	
-	//***********************************************
+	//***********************************************************
 	
 	function showMap(lat,lon){
 	
@@ -207,5 +224,4 @@ $(document).ready(function () {
 		var marker=new google.maps.Marker(markerOptions );
 	}
  });
-
 

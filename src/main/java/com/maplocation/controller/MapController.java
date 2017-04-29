@@ -54,7 +54,6 @@ public class MapController {
 		return result;
 	}
 	
-	
 	@RequestMapping(value="getLocationByName",method=RequestMethod.GET)
 	public @ResponseBody
 	String getDomainInJsonFormatName(@RequestParam String geoName){
@@ -79,22 +78,22 @@ public class MapController {
 	public @ResponseBody
 	String getDomainInJsonFormatSelectedName(@RequestParam long selectName){
 		
-		
+			  String str="";
 		      Geo geoLatLon = geoDao.getLaLngById(selectName);
+		     
+		      if(geoLatLon!=null){
+		    	  ServerLocationName locationDetails=new ServerLocationName();
+		    	  locationDetails.setId(geoLatLon.getGeoId());
+		    	  locationDetails.setLocationName(geoLatLon.getCity());
+		    	  locationDetails.setLat(geoLatLon.getLat());
+		    	  locationDetails.setLon(geoLatLon.getLng());
 		      
-		      ServerLocationName locationDetails=new ServerLocationName();
-		      locationDetails.setId(geoLatLon.getGeoId());
-		      locationDetails.setLocationName(geoLatLon.getCity());
-		      locationDetails.setLat(geoLatLon.getLat());
-		      locationDetails.setLon(geoLatLon.getLng());
-		    
-		      String str="";
 		       ObjectMapper mapper=new ObjectMapper();
 		       try {
 				str=mapper.writeValueAsString(locationDetails);
 		       } catch (Exception e) {
 				e.printStackTrace();
-			}
+			}}
 			return str;
 	}
 		

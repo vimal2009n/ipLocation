@@ -35,7 +35,6 @@ public class GeoDaoImpl implements GeoDao{
 			String cityName =  (String) cityObject[1];
 			String lat = (String) cityObject[2];
 			String lon = (String) cityObject[3];
-			
 			city.setId(id);
 			city.setLocationName(cityName);
 			city.setLat(lat);

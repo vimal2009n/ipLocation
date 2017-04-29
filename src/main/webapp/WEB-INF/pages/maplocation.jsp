@@ -14,33 +14,9 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
- 		
-	
-		
-	</head>
-	<body>
-		
-<!--  	<div class="panel panel-success">	
-	 <div class="panel-heading">Geo Location</div>
-  		<div class="panel-body">
-		 <div class="row">
-		  <div class="col-xs-6">
-			Enter IP:<input type="text" placeholder="Ip address"  id="input-search" >
-			<span>
-				<input type="button" id="input-button-search"  value="Search">
-			</span>
-		 </div>
-		 <div class="col-xs-6">
-		 	Enter City:
-		
-			<input type="text"  id="input-search-byname"  placeholder="City Name">
-	    	<input type="button" id="input-button-search-name" value="Search">
-		 	
-		 </div>	
-		 
-		</div> 
-		</div>
-	</div>	-->
+ 	</head>
+ 
+ <body>
   <div class="panel panel-success">	
 	 <div class="panel-heading">Geo Location</div>
   	  <div class="panel-body">	
@@ -51,7 +27,7 @@
    			 <label for="ipAddress">Enter IP:</label>
    			 <input type="text" class="form-control" id="input-search" placeholder="Ip address">
 		  </div>
-		  <input type="button" id="input-button-search"  class = "btn btn-primary" value="Search">
+		  <input type="button" id="input-button-search"  class="btn btn-primary"  value="Search">
 		 </div>
 		 
 		  <div class="col-xs-6"> 
@@ -65,31 +41,34 @@
 		</div>
    	</div>
    </div>
-		
-		<div id="table">
-			<table>
-				<tr>
-					<td>Country Name:</td>
-					<td id="country"></td>
-				</tr>
-				<tr>
-					<td>State Name:</td>
-					<td id="state"></td>
-				</tr>
-				<tr>
-					<td>City Name:</td>
-					<td id="city"></td>
-				</tr>
-				<tr>
-					<td><input type="button" onclick="showStreetView()" value="StreetView"></td>
-					<td><input type="button" onclick="speed(1)" value="Forward"></td>
-					<td><input type="button" onclick="turn(-15)" value="Left"></td>
-					<td><input type="button" onclick="turn(15)" value="Right"></td>
-					<td><input type="button" onclick="speed(-1)" value="Break"></td>
-				</tr>
+		<div id="table" >
+			
+		  <div id="details">
+			<dl class="dl-horizontal">
+ 				 <dt>Country Name</dt>
+  				 <dd id="country"></dd>
+  				 
+  				 <dt>State Name</dt>
+  				 <dd id="state"></dd>
+  				 
+  				  <dt>City Name</dt>
+  				 <dd id="city"></dd>
+  			</dl>
+  			</div>	
+  			
+  				<table id="btnTable">
+  				<tr><td><input type="button" class="btn btn-primary" onclick="showStreetView()" value="StreetView"></td>
+  				    <td><input type="button" class="btn btn-success" onclick="speed(1)" value="Forward"></td>
+  				    <td><input type="button" class="btn btn-info" onclick="turn(-15)" value="Left"></td>
+  				    <td><input type="button" class="btn btn-info" onclick="turn(15)" value="Right"></td>
+  				    <td><input type="button" class="btn btn-warning" onclick="speed(-1)" value="Break"></td>
+  				</tr>
 			</table>
-		</div>
-		<div style="width:800px;height:600px" id="map">
+			
+			
+			
+		   </div>
+		  <div  id="map">
 		</div>
 	</body>
 </html>

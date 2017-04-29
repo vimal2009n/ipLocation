@@ -15,7 +15,7 @@ public class HibernateUtil {
 	
 	 @SuppressWarnings("rawtypes")
 		public <T> List fetchAll(String query) {  
-		 
+		
 	        return sessionFactory.getCurrentSession().createSQLQuery(query).list();        
 	    }
 	 

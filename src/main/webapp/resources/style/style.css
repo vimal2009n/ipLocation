@@ -12,3 +12,21 @@
 body{
 	margin: 20px;
 }
+/*#map{
+  
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
+}*/
+
+#details dd,#details dt{
+	
+	width:auto;
+ /* margin-left:auto;*/
+	
+}
+#btnTable td{
+	
+	 padding-right: 15px;
+	 padding-bottom: 10px;
+}
